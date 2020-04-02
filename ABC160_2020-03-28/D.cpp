@@ -12,18 +12,15 @@ int main(){
     cin >> x;
     cin >> y;
     vector<int> des((n * (n - 1)) / 2);
-    int a = 0;
+    int a,b,c;
     vector<int> cnt(n - 1);
     FOR(i,1,n + 1){
         FOR(j,i + 1,n + 1){
-            if(x < y && (i <= x && j >= y)){
-                a = j - i - (y - x - 1);
-            }else if(x > y && (i <= y && j >= x)){
-                    a = j - i - (x - y - 1);
-            }else
-                a = j - i;
-            //cout << a << endl;
-            cnt[--a]++;
+                a = abs(x - i) + 1 + abs(y - j);
+                b= abs(y - i) + 1 + abs(x - j);
+                c = j - i;
+            //cout <<  << endl;
+            cnt[min({a,b,c}) - 1]++;
         }
     }
     

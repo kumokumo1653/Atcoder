@@ -4,13 +4,19 @@ using namespace std;
 #define REPR(i, n) for(int i = n; i >= 0; i--)
 #define FOR(i, m, n) for(int i = m; i < n; i++)
 #define ALL(v) v.begin(), v.end()
-#define cmax(m, x) if (x > m) m = x;
-#define cmin(m, x) if (x < m) m = x;
-#define itn int
+
 typedef long long lint;
-const int INF = 1e9;
-const lint LINF = 1e18;
 int main(){
+    vector<int> data(6);
+    REP(i,6){
+        cin >> data[i];
+    }
+    REP(i,6){
+        REP(j,5 - i){
+            if(data[j] < data[j + 1])
+                swap(data[j],data[j + 1]);
+        }
+    }
     
-    return 0;
+    cout << data[2] << endl;
 }
