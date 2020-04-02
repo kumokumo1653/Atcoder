@@ -4,8 +4,8 @@ using namespace std;
 #define REPR(i, n) for(int i = n; i >= 0; i--)
 #define FOR(i, m, n) for(int i = m; i < n; i++)
 #define ALL(v) v.begin(), v.end()
-#define cmax(m, x) if (x > m) m = x;
-#define cmin(m, x) if (x < m) m = x;
+#define CMAX(m, x) if (x > m) m = x;
+#define CMIN(m, x) if (x < m) m = x;
 #define itn int
 typedef long long lint;
 const int INF = 1e9;

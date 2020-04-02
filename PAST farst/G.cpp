@@ -4,8 +4,8 @@ using namespace std;
 #define REPR(i, n) for(int i = n; i >= 0; i--)
 #define FOR(i, m, n) for(int i = m; i < n; i++)
 #define ALL(v) v.begin(), v.end()
-#define cmax(m, x) if (x > m) m = x;
-#define cmin(m, x) if (x < m) m = x;
+#define CMAX(m, x) if (x > m) m = x;
+#define CMIN(m, x) if (x < m) m = x;
 #define itn int
 typedef long long lint;
 const int INF = 1e9;
@@ -13,38 +13,32 @@ const lint LINF = 1e18;
 int main(){
     int n;
     cin >> n;
-    lint sum = LINF;
-    vector<vector<int>> a(n - 1);
+    lint sum = -LINF;
+    vector<vector<int>> a(n - 1,vector<int>(n));
     vector<int> group(n);
     REP(i,n - 1){
-        REP(j,n - 1 - i){
+        FOR(j,i + 1,n){
             int c;
             cin >> c;
-            a[i].push_back(c);
+            a[i][j] = c;
         }
     }   
-    REP(i,n * n * n - 1){
+
+    REP(i,int(pow(3,n))){
         int num = i;
-        int add = 0;
-        vector<int> zero;
-        vector<int> one;
-        vector<int> two;
+        lint add = 0;
         REP(j,n){
             group[j] = num % 3;
             num /= 3;
-            if(group[j] == 0)
-                zero.push_back(j);
-            else if(group[j] == 1)
-                one.push_back(j);
-            else
-                two.push_back(j);
         }
-        REP(t,zero.size()){
-            REP(u,zero.size() - t){
-                
+        REP(j,n - 1){
+            FOR(k, j + 1, n){
+                if(group[k] == group[j])
+                    add += a[j][k];
             }
-        }
-        
+        } 
+        CMAX(sum,add);
     }
+    cout << sum << endl;
     return 0;
 }
