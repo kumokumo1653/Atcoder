@@ -11,6 +11,19 @@ typedef long long lint;
 const int INF = 1e9;
 const lint LINF = 1e18;
 int main(){
-    
+    lint n,k;
+    lint temp;
+    cin >> n >> k;
+    while(true){
+        if(n / k > 0)
+            temp = abs(n -  k * (n / k));
+        else
+            temp = abs(n - k);
+        if(temp > n)
+            break;
+        n = temp;
+    }
+    cout << min(temp,n) << endl;
+
     return 0;
 }

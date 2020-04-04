@@ -11,6 +11,25 @@ typedef long long lint;
 const int INF = 1e9;
 const lint LINF = 1e18;
 int main(){
+    itn n,m;
+    cin >> n >> m;
+    int cnt = 0;
+    int sum = 0;
+    vector<int> a(n);
+    REP(i,n){
+        cin >> a[i];
+        sum += a[i];
+    }
+    REP(i,n){
+        if(double(a[i]) >= double(sum / (4.0 * m)))
+            cnt++;
+    }
+    if(cnt >= m)
+        cout << "Yes" << endl;
+    else
+    {
+        cout << "No" << endl;
+    }
     
     return 0;
 }

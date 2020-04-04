@@ -11,6 +11,11 @@ typedef long long lint;
 const int INF = 1e9;
 const lint LINF = 1e18;
 int main(){
-    
+    itn a, b ,c;
+    cin >> a >> b >> c;
+    swap(a,b);
+    swap(a,c);
+
+    cout << a << ' '  << b << ' ' << c << endl;
     return 0;
 }
