@@ -3,3 +3,6 @@ atoi 引数 char*
 stoi 引数 string
 
 大文字小文字変換 transform ::tolower
+
+順列の自動生成
+next_permutation(昇順)
