@@ -11,3 +11,7 @@ stoi 引数 string
 
 順列の自動生成
 next_permutation(昇順)
+
+逆元
+a,mが互いに素のとき
+x ≡ y (mod m) ⇔ ax ≡ ay (mod m)
