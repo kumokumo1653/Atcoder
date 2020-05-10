@@ -2,6 +2,11 @@
 x/y
 ans = (x + y - 1) / y;
 
+環状配列 
+0要素を最後にも入れる
+
+cout 任意桁表示 実数
+cout << std::fixed << std::setprecision(桁数) << y << endl;
 
 string-int 変換
 atoi 引数 char*
@@ -10,8 +15,20 @@ stoi 引数 string
 大文字小文字変換 transform ::tolower
 
 順列の自動生成
+iota(all,1)で1から順に配列に代入
+do{}while(next_permutation(all))で終了判定
 next_permutation(昇順)
 
 逆元
 a,mが互いに素のとき
 x ≡ y (mod m) ⇔ ax ≡ ay (mod m)
+
+二分探索
+binary_search(all key);
+key以上の要素の内一番左側を返す．keyを入れるべきところを返す
+lower_bound(all key);
+keyより大きい要素の内左側を返す．ソートを崩さない一番右に入れる．
+upper_bound(all key);
+
+極値問題
+三分探索

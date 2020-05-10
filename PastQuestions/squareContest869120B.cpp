@@ -13,43 +13,46 @@ const lint LINF = 1e18;
 int main(){
     int n,k;
     cin >> n >> k;
-    int len = INF;
-    vector<int> height(n);
+    lint len = LINF;
+    vector<lint> height(n);
     vector<int> digit(n,0);
     vector<int> val(n,1);
     REP(i,n)
         cin >> height[i];
     
     int cnt = 0;
-    int sum = 0;
+    lint sum = 0;
     while(1){
-        if(cnt == k){
-            int first = 0;
+        if(cnt >= k){
+            lint first = 0;
             REP(i,n){
                 if(digit[i] == 1){
-                    if(first == 0)
-                        first = digit[i];
+                    if(first == 0){
+                        first = height[i];
+                        REP(j,i){
+                            CMAX(first,height[j]);
+                        }
+                        sum += (first - height[i]);
+                    }
                     else{
-                        if(first >= digit[i]){
-                            sum += first - digit[i] + 1;
+                        if(first >= height[i]){
+                            sum += (first - height[i] + 1);
+                            first++;
                         }else{
-                            first = digit[i];
+                            first = height[i];
                         }
                     }
                 }
+                CMAX(first,height[i]);
             }
-        }else if(cnt > k){
-            int first = 0;
-            int c = 1;
-            REP(i,n){
-                if(digit[i] == 1){
-                    if(first == 0)
-                        first = digit[i];
-                    
-                }
-            }
+            CMIN(len,sum);
         }
+        sum = 0;
         cnt = 0;
+
+        if(digit == val)
+            break;
+
         digit[0] += 1;
         REP(i,n){
             if(digit[i] == 2){
@@ -60,6 +63,8 @@ int main(){
                 cnt++;
             }
         }
+
     }
+    cout << len << endl;
     return 0;
 }
