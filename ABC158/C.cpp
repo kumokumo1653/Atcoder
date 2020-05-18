@@ -13,16 +13,17 @@ const lint LINF = 1e18;
 int main(){
     int a,b;
     cin >> a >> b;
-    double anuki = a / 0.08;
-    double bnuki = b / 0.1;
-    if(b == int(anuki * 0.1)){
-        cout << anuki << endl;
-        return 0;
+    int cnt = 1;
+    while(1){
+        int anuki = cnt * 0.08;
+        int bnuki = cnt * 0.1;
+        if(anuki == a && bnuki == b)
+            break;
+        if(bnuki > 100){
+            cout << -1 << endl;
+            return 0;
+        }
+        cnt++;
     }
-    if(a == int(bnuki * 0.08)){
-        cout << bnuki << endl;
-        return 0;
-    }
-    cout << -1 << endl;
-    return 0;
+    cout << cnt << endl;
 }

@@ -20,5 +20,29 @@ typedef long double ldouble;
 const int INF = 1e9;
 const lint LINF = 1e18;
 int main(){
+    int n;
+    cin >> n;
+    n %= 100;
+    n %= 10;
+    switch (n)
+    {
+    case 2:
+    case 4:
+    case 5:
+    case 7:
+    case 9:
+        cout << "hon" << endl;
+        break;
+    
+    case 0:
+    case 1:
+    case 6:
+    case 8:
+        cout << "pon" << endl;
+        break;
+    default:
+        cout << "bon" << endl;
+        break;
+    }
     return 0;
 }

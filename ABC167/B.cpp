@@ -5,20 +5,35 @@ using namespace std;
 #define FOR(i, m, n) for(int i = m; i < n; i++)
 #define FORR(i,m,n) for(int i = m - 1; i >= n; i--)
 #define ALL(v) v.begin(), v.end()
+#define CMAX(m, x)  m = max(m,x)
+#define CMIN(m, x)  m = min(m,x)
 #define itn int
 #define Yes() cout << "Yes" << endl
 #define No() cout << "No" << endl
 #define YES() cout << "YES" << endl
 #define NO() cout << "NO" << endl
-template<typename T, typename U>
-inline bool CMAX(T &m, U x) { if (m < x) { m = x; return true; } return false; }
-template<typename T, typename U>
-inline bool CMIN(T &m, U x) { if (m > x) { m = x; return true; } return false; }
-
 typedef long long lint;
 typedef long double ldouble;
 const int INF = 1e9;
 const lint LINF = 1e18;
 int main(){
+    int a,b,c,k;
+    cin >> a >> b >> c >> k;
+    int max = 0;
+    if(k > a){
+        max = a;
+        k -= a;
+    }else{
+        max = k;
+        cout << max << endl;
+        return 0;
+    }
+    if(k > b){
+        k -= b;
+    }else{
+        cout << max << endl;
+        return 0;
+    }
+    cout << max - k << endl;
     return 0;
 }

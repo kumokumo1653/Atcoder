@@ -20,5 +20,17 @@ typedef long double ldouble;
 const int INF = 1e9;
 const lint LINF = 1e18;
 int main(){
+    int k;
+    string s;
+    cin >> k;
+    cin >> s;
+    if(s.size() <= k){
+        cout << s <<endl;
+        return 0;
+    }else{
+        REP(i,k)
+            cout << s[i];
+        cout << "..." << endl;
+    }
     return 0;
 }

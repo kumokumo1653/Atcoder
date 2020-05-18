@@ -20,5 +20,21 @@ typedef long double ldouble;
 const int INF = 1e9;
 const lint LINF = 1e18;
 int main(){
+    int n;
+    cin >> n;
+    int mx = 0;
+    vector<int> a(1000002,0);
+    REP(i,n){
+        int s,e;
+        cin >> s >> e;
+        a[s]++;
+        a[e + 1]--;
+    }
+    mx = a[0];
+    FOR(i,1,1000002){
+        a[i] += a[i - 1];
+        CMAX(mx,a[i]);
+    }
+    cout << mx << endl;
     return 0;
 }
