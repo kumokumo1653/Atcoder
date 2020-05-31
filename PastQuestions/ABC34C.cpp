@@ -10,8 +10,6 @@ using namespace std;
 #define No() cout << "No" << endl
 #define YES() cout << "YES" << endl
 #define NO() cout << "NO" << endl
-#define println(x) cout << x << endl
-#define print(x) cout << x << " "
 template<typename T, typename U>
 inline bool CMAX(T &m, U x) { if (m < x) { m = x; return true; } return false; }
 template<typename T, typename U>
@@ -22,6 +20,35 @@ typedef long double ldouble;
 const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
+
+lint calc(lint a,lint b){
+    if(b == 0)
+        return 1;
+    if(b % 2 == 1)
+        return (a * calc(a,b - 1))%MOD;
+    else
+    {
+        lint d = calc(a,b/2);
+        return (d * d)%MOD;
+    }
+    
+}
 int main(){
+    int w,h;
+    cin >> w >> h;
+    w--;h--;
+    lint sum = 1;
+    lint tate = 1;
+    REP(i,h){
+        sum *= (w + h - i);
+        sum %= MOD;
+        tate *= (h - i);
+        tate %= MOD;
+    }
+    lint wal = calc((tate)%MOD,MOD - 2);
+    
+    cout << (sum*wal) % MOD <<endl;
+
+
     return 0;
 }

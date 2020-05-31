@@ -23,5 +23,32 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
+    int h,w;
+    cin >>h >> w;
+    lint ans = 0;
+    vector<vector<int>> cost(10,vector<int>(10,INF));
+    REP(i,10){
+        REP(j,10){
+            cin >> cost[i][j];
+        }
+    }
+    REP(i,10){
+        REP(j,10){
+            REP(k,10){
+                cost[j][k] = min(cost[j][k] , cost[j][i] + cost[i][k]);
+            }
+        }
+    }
+
+    REP(i,h){
+        REP(j,w){
+            int a;
+            cin >> a;
+            if(a != -1){
+                ans += cost[a][1];
+            }
+        }
+    }
+    println(ans);
     return 0;
 }

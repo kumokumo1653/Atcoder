@@ -23,5 +23,34 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
+    int n,m;
+    cin >> n>>m;
+    vector<int> ans(n,-1);
+    vector<vector<int>> g(n,vector<int>(n,INF));
+    REP(i,m){
+        int a,b,c;
+        cin >> a >> b >> c;
+        a--;b--;
+        g[a][b] = c;
+        g[b][a] = c;
+    }
+    REP(i,n){
+        REP(j,n){
+            if(i == j)g[i][j] = 0;
+        }
+    }
+    REP(k,n){
+        REP(i,n){
+            REP(j,n){
+                g[i][j] = min(g[i][j],g[i][k]+g[k][j]);
+            }
+        }
+    }
+    REP(i,n){
+        REP(j,n){
+            if(g[i][j] != INF) CMAX(ans[i],g[i][j]);
+        }
+    }
+    println(*(min_element(ALL(ans))));
     return 0;
 }

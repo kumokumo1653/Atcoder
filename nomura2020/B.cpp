@@ -23,5 +23,23 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
+    string s;
+    cin >> s;
+    REP(i,s.size()){
+        if(s[i] == '?'){
+            int cnt = 1;
+            int index = i + 1;
+            while(index != s.size() - 1 ){
+                if(s[index] == '?'){
+                    cnt++;
+                    index++;
+                }else break;
+            }
+            REP(j,cnt)s[i + j] = 'D';
+            i = i + cnt - 1;
+        }
+
+    }
+    println(s);
     return 0;
 }

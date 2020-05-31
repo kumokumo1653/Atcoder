@@ -10,8 +10,6 @@ using namespace std;
 #define No() cout << "No" << endl
 #define YES() cout << "YES" << endl
 #define NO() cout << "NO" << endl
-#define println(x) cout << x << endl
-#define print(x) cout << x << " "
 template<typename T, typename U>
 inline bool CMAX(T &m, U x) { if (m < x) { m = x; return true; } return false; }
 template<typename T, typename U>
@@ -23,5 +21,20 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
+    int n;
+    cin >> n;
+    vector<int> pos(n);
+    REP(i,n) cin >> pos[i];
+    int mn = INF;
+    int cost = 0;
+    FOR(i,1,101){
+        REP(j,n){
+            cost += (pos[j] - i) * (pos[j] - i);
+        }
+        CMIN(mn,cost);
+        cost = 0;
+    }
+    cout << mn << endl;
+
     return 0;
 }

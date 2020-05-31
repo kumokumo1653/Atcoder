@@ -22,6 +22,45 @@ typedef long double ldouble;
 const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
+vector<int> g;
+
+int root (int x){
+    if(g[x] == x) return x;
+    else return g[x] = root(g[x]);
+}
+bool same (int x,int y){
+    return g[x] == g[y];
+}
+void unite(int x,int y){
+    x = root(x);
+    y = root(y);
+    if(x == y) return;
+    g[x] = y;
+}
 int main(){
+    int n,m;
+    cin >> n >> m;
+    int ans = 0;
+    g = vector<int>(n);
+    vector<pair<int,int>> keiro(m);
+    REP(i,m){
+        int a,b;
+        cin >> a >> b;
+        a--;b--;
+        keiro[i].first = a;
+        keiro[i].second = b;
+    } 
+    REP(i,m){
+        REP(j,n) g[j] = j;
+        REP(j,m){
+            if(i == j) continue;
+            unite(keiro[j].first,keiro[j].second);
+        }
+        int temp = root(g[0]);
+        REP(j,n){
+            if(root(j) != temp){ ans++;break;}
+        }
+    }
+    println(ans);
     return 0;
 }

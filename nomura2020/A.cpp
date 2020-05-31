@@ -23,5 +23,10 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
+    int h1,h2,m1,m2,k;
+    cin >> h1 >> m1 >> h2 >> m2 >> k;
+    int diff = (h2 - h1) * 60 + (m2 - m1) - k;
+    println(diff);
+
     return 0;
 }

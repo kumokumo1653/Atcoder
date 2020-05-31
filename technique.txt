@@ -23,6 +23,18 @@ next_permutation(昇順)
 a,mが互いに素のとき
 x ≡ y (mod m) ⇔ ax ≡ ay (mod m)
 
+pが素数のとき
+a^p - 2 = 1/a
+
+MOD演算
+足し算掛け算そのまま
+引き算 MODたしてから引いてMODとる
+割り算 逆元
+
+重複あり組み合わせ
+n種類のものからk個選ぶ組み合わせ
+n個をk-1個の区切りで区切る組み合わせに対応
+(n + k - 1) C k
 二分探索
 binary_search(all key);
 key以上の要素の内一番左側を返す．keyを入れるべきところを返す
@@ -48,3 +60,59 @@ i,j >= 1
 s[i][j] = s[i-1][j] + s[i][j-1]-s[i-1][j-1];とする
 区間[(i,j),(k,l)]
 s[k][l] - s[i - 1][l] - s[k][j - 1] + s[i -1][j-1]
+
+
+無向グラフ
+連結の大きさを調べる．
+配列で各成分がどのグループに属するか保存.グループが入ってないところをdfs.ABC157D
+
+ダイクストラ最短経路 JOI2008F
+DFSみたいな感じ
+O((e+v)logv)指定した二点間の最短経路．コスト負はだめ
+優先度付きキュー(昇順) (その時の最小コスト，頂点)
+始点sから各点の最短経路を格納配列d
+グラフg(e,v)頂点eでの隣接点配列v 
+d[i] < queのコスト  続行
+iに隣接する頂点jに対しd[j]よりd[i]+i-jのコストのときd[j]を更新
+(d[j],j)をキューにプッシュ
+
+ワーシャルフロイド法最短経路
+O(n^3)頂点n
+コストが負でも良い，負閉回路はだめ.全ての頂点間の最短経路を求める
+i,jのコストを配列に格納i=jは0，経路がないとところはINF
+三重ループで k,i,jの順
+i 始点 j終点 k中継地点
+g[i][j] = min(g[i][j],g[i][k]+g[k][j]);
+i-jと行くかi-k-jと行くのを比較
+
+UnionFind
+グラフの連結を木構造の管理配列で
+頂点iの親をg[i]に格納．木構造の統合と大本の親のチャックができる．木構造を分割できない
+経路圧縮するとO(logn)に
+vector<lint> g; 親を格納
+vector<lint> p; グループの大きさ
+void init(int n){
+    REP(i,n) {g[i] = i; p[i] = 1;}
+}
+所属グループを返す
+int root(int x){
+    if(g[x] == x) return x;
+    else return g[x] = root(g[x]);
+}
+bool unite(int x,int y){
+    x = root(x);
+    y = root(y);
+    if(x == y) return false;
+    if(p[x] < p[y]) swap(x,y);
+    p[x] += p[y];
+    g[y] = x;
+    return true;
+    
+}
+グループの大きさ
+int len(int x){
+    return p[root(x)];
+}
+bool same(int x,int y){
+    return root(x) == root(y);
+}
