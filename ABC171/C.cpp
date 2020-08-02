@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define REP(i, n) for(int i = 0; i < n; i++)
+#define REPR(i, n) for(int i = n - 1; i >= 0; i--)
+#define FOR(i, m, n) for(int i = m; i < n; i++)
+#define FORR(i,m,n) for(int i = m - 1; i >= n; i--)
+#define ALL(v) v.begin(), v.end()
+#define itn int
+#define Yes() cout << "Yes" << endl
+#define No() cout << "No" << endl
+#define YES() cout << "YES" << endl
+#define NO() cout << "NO" << endl
+#define println(x) cout << x << endl
+#define print(x) cout << x << " "
+template<typename T, typename U>
+inline bool CMAX(T &m, U x) { if (m < x) { m = x; return true; } return false; }
+template<typename T, typename U>
+inline bool CMIN(T &m, U x) { if (m > x) { m = x; return true; } return false; }
+
+typedef long long lint;
+typedef long double ldouble;
+const int INF = 1e9;
+const lint LINF = 1e18;
+const int MOD = 1e9+7;
+int main(){
+    lint n;
+    cin >> n;
+    
+    vector<int>digit;
+    while(1){
+        digit.push_back(n % (lint)26);
+        n /= (lint)26;
+        if(n == 0) break;
+    }
+    int cnt = -1;
+    int c = 0;
+    int len = digit.size();
+    REP(i,len){
+        if(digit[i] == 0){
+            if(cnt == -1) cnt = i;
+            c++;
+            len--;
+        }
+    }
+    if(cnt != -1){
+        digit.erase(digit.begin() + cnt );
+        FOR(j,cnt,digit.size())
+            digit[j] = 27 - digit[j] - c + 1;
+    }
+    string a = "";
+    REP(i,digit.size())
+        a.push_back(digit[i] + 'a' - 1);
+    reverse(ALL(a));
+    println(a);
+    return 0;
+}

@@ -116,3 +116,9 @@ int len(int x){
 bool same(int x,int y){
     return root(x) == root(y);
 }
+
+
+
+重複ありの組み合わせ
+n種類のもののなかからr個取り出す
+(n+r-1)Cr
