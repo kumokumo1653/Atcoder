@@ -23,25 +23,25 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    vector<int> b(n);
-    REP(i,n){
-        cin >> a[i];
-        b[i] = a[i];
+    itn a, b;
+    cin >> a >> b;
+    if(a <= 0 && b >= 0){
+        println("Zero");
+        return 0;
     }
-
-    sort(ALL(b));
-
-    int max = b[b.size() - 1];
-    int second = b[b.size() - 2];
-    int index;
-    REP(i,n){
-        if(a[i] == max) println(second);
-        else println(max);
+    if(a > 0 && b > 0){
+        println("Positive");
+        return 0;
     }
-    
+    if(a < 0 && b < 0){
+        int d = abs(a - b) + 1;
+        if(d % 2 == 0){
+            println("Positive");
+        }else{
+            println("Negative");
+        }
+        return 0;
+    }
 
     return 0;
 }

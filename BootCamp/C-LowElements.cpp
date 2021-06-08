@@ -25,23 +25,17 @@ const int MOD = 1e9+7;
 int main(){
     int n;
     cin >> n;
-    vector<int> a(n);
-    vector<int> b(n);
+    vector<int> p(n);
     REP(i,n){
-        cin >> a[i];
-        b[i] = a[i];
+        cin >> p[i];
     }
-
-    sort(ALL(b));
-
-    int max = b[b.size() - 1];
-    int second = b[b.size() - 2];
-    int index;
+    int  min = INF;
+    int num = 0;
     REP(i,n){
-        if(a[i] == max) println(second);
-        else println(max);
+        CMIN(min, p[i]);
+        if(p[i] <= min)
+            num++;
     }
-    
-
+    println(num);
     return 0;
 }
