@@ -44,7 +44,7 @@ int main(){
             l[i + 1].first = a[i] + 1;
         }
     }
-    l[n].second = 1000000000000000000;
+    l[n].second = 1000000000000500000;
     sort(ALL(k));
     
     lint number = 0;
