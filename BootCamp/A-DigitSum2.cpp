@@ -23,34 +23,47 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
-    string s;
-    cin >> s;
-    string m = "";
-    string k;
-    int ans = 0;
-    int r = 0;
-    REPR(i,s.size()){
-        if(s[i] == s[s.size() - 1]){
-            r++;
-        }else break;
+    lint n;
+    cin >> n;
+    lint temp = n;
+    int digit = 1;
+
+    int max = 0;
+    vector<int> num;
+    while(temp / 10 > 0){
+        num.push_back(temp % 10);
+        temp /= 10;
+        digit++;
     }
-    REP(i,s.size()){
-        k = string{s[i]};
-        if(i >= s.size() - r){
-            itn l = s.size() - i;
-            ans += (l / 3) * 2;
-            if(l % 3 != 0){
-                ans++;
+    num.push_back(temp % 10);
+    vector<int> val(num.size());
+    val = num;
+    int cnt = 0;
+    REP(k,val.size()){
+        cnt += val[k];
+    }
+    CMAX(max, cnt);
+    REP(i,num.size() - 1){
+        REP(j,i + 1){
+            if(val[j] != 9){
+                int index = j;
+                while(1){
+                    val[index] = 9;
+                    if(val[index + 1] == 0){
+                        index++;
+                    }else{
+                        val[index + 1]--;
+                        break;
+                    }
+                }
             }
-            break;
+            cnt = 0;
+            REP(k,val.size()){
+                cnt += val[k];
+            }
+            CMAX(max, cnt);
         }
-        if(m == k){
-            k += string{s[i + 1]};
-            i++;
-        }
-        m = k;
-        ans++;
     }
-    println(ans);
+    println(max);
     return 0;
 }

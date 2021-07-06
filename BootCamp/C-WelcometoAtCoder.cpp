@@ -23,34 +23,37 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
-    string s;
-    cin >> s;
-    string m = "";
-    string k;
-    int ans = 0;
-    int r = 0;
-    REPR(i,s.size()){
-        if(s[i] == s[s.size() - 1]){
-            r++;
-        }else break;
+    int n,m;
+    cin >> n >> m;
+    int wa = 0;
+    int ac = 0;
+    vector<pair<int,string>> a(m);
+    vector<int> q(n);
+    vector<bool> f(n);
+    REP(i,m){
+        int b;
+        string s;
+        cin >> b;
+        cin >> s;
+        b--;
+        a[i] = make_pair(b,s);
+        if(s == "AC"){
+            f[a[i].first] = true;
+        }
     }
-    REP(i,s.size()){
-        k = string{s[i]};
-        if(i >= s.size() - r){
-            itn l = s.size() - i;
-            ans += (l / 3) * 2;
-            if(l % 3 != 0){
-                ans++;
+    
+    REP(i,m){
+        if(a[i].second == "WA"){
+            if(q[a[i].first] == 0 && f[a[i].first]){
+                wa++;
             }
-            break;
+        }else{
+            if(f[a[i].first]){
+                ac++;
+                f[a[i].first] = false;
+            }
         }
-        if(m == k){
-            k += string{s[i + 1]};
-            i++;
-        }
-        m = k;
-        ans++;
     }
-    println(ans);
+    print(ac);println(wa);
     return 0;
 }

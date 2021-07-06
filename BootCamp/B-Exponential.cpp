@@ -23,34 +23,15 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
-    string s;
-    cin >> s;
-    string m = "";
-    string k;
-    int ans = 0;
-    int r = 0;
-    REPR(i,s.size()){
-        if(s[i] == s[s.size() - 1]){
-            r++;
-        }else break;
-    }
-    REP(i,s.size()){
-        k = string{s[i]};
-        if(i >= s.size() - r){
-            itn l = s.size() - i;
-            ans += (l / 3) * 2;
-            if(l % 3 != 0){
-                ans++;
-            }
-            break;
+    lint x;
+    cin >> x;
+    lint max = 0;
+    REP(i,33){
+        FOR(j,2,11){
+            if(powl(i,j) <= x)
+                CMAX(max, powl(i,j));
         }
-        if(m == k){
-            k += string{s[i + 1]};
-            i++;
-        }
-        m = k;
-        ans++;
     }
-    println(ans);
+    println(max);
     return 0;
 }

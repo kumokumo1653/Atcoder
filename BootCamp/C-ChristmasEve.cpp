@@ -23,34 +23,22 @@ const int INF = 1e9;
 const lint LINF = 1e18;
 const int MOD = 1e9+7;
 int main(){
-    string s;
-    cin >> s;
-    string m = "";
-    string k;
-    int ans = 0;
-    int r = 0;
-    REPR(i,s.size()){
-        if(s[i] == s[s.size() - 1]){
-            r++;
-        }else break;
+    int n,k;
+    cin >> n >> k;
+    int min = INF;
+    int x = 0;
+    vector<int> h(n);
+    REP(i,n){
+        cin >> h[i];
     }
-    REP(i,s.size()){
-        k = string{s[i]};
-        if(i >= s.size() - r){
-            itn l = s.size() - i;
-            ans += (l / 3) * 2;
-            if(l % 3 != 0){
-                ans++;
-            }
-            break;
-        }
-        if(m == k){
-            k += string{s[i + 1]};
-            i++;
-        }
-        m = k;
-        ans++;
+    sort(ALL(h));
+    x = h[k - 1] - h[0];
+    CMIN(min, x);
+    FOR(i,1,n){
+        if(k - 1 + i >= n) break;
+        x = h[k - 1 + i] - h[i];
+        CMIN(min, x);
     }
-    println(ans);
+    println(min);
     return 0;
 }
